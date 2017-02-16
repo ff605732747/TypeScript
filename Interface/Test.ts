@@ -35,3 +35,11 @@ function creatSquare(config: SquareConfig): { color: string, area: number } {
     return area;
 }
 
+/**
+ * 只读属性
+ * @interface
+ */
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
