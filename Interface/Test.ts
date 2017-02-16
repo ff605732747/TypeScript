@@ -43,3 +43,56 @@ interface Point {
     readonly x: number;
     readonly y: number;
 }
+
+/**
+ * 函数类型
+ * @interface SearchFunc
+ */
+interface SearchFunc {
+    (source: string, substring: string): boolean;
+}
+
+var mySearchFunc: SearchFunc;
+mySearchFunc = function (source, substring) {
+    let result = source.search(substring),
+        flag = true;
+    if (-1 !== result) {
+        flag = false;
+    }
+    return flag;
+}
+
+//类类型
+interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+
+interface ClockInterface {
+    tick();
+}
+
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+    return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) {
+
+    }
+    tick() {
+        console.log("a");
+    }
+}
+
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) {
+
+    }
+    tick() {
+        console.log("b");
+    }
+}
+
+
+var Digital = createClock(DigitalClock, 12, 7);
+var Analog = createClock(AnalogClock, 12, 4);
