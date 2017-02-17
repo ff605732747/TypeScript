@@ -96,3 +96,35 @@ class AnalogClock implements ClockInterface {
 
 var Digital = createClock(DigitalClock, 12, 7);
 var Analog = createClock(AnalogClock, 12, 4);
+
+interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    width: number;
+}
+
+
+let square = <Square>{};
+square.color = "red";
+square.width = 100;
+
+
+interface Counter {
+    (start: number): Counter;
+    interval: number;
+    reset();
+}
+
+function getCounter(): Counter {
+    let counter = <Counter>function (start) {
+        console.log(start);
+    }
+    counter.interval = 1;
+    counter.reset = function () {
+        console.log("_~-");
+    }
+    return counter;
+}
+
